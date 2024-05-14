@@ -5,9 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class StudentController {
@@ -38,6 +36,9 @@ public class StudentController {
     @FXML
     private TableColumn<Student, String> majorColumn;
 
+    @FXML
+    private Label message;
+
     private ObservableList<Student> studentData = FXCollections.observableArrayList();
 
     @FXML
@@ -48,7 +49,7 @@ public class StudentController {
         String id = idField.getText();
 
         if(id.isEmpty()||name.isEmpty()||surname.isEmpty()||major.isEmpty()){
-            System.out.println("Please fill in all info.");
+            message.setText("Please fill in all info.");
         } else {
             Student newStudent = new Student(name,surname,id, major);
             studentData.add(newStudent);
@@ -73,10 +74,10 @@ public class StudentController {
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Student,String>("name"));
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<Student,String>("surname"));
-        majorColumn.setCellValueFactory(new PropertyValueFactory<Student,String>("major"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
     // Initialize the table
     }
 }
