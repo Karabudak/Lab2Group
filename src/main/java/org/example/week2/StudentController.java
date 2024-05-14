@@ -36,6 +36,7 @@ public class StudentController {
     @FXML
     private TableColumn<Student, String> majorColumn;
 
+    //For Error message display
     @FXML
     private Label message;
 
@@ -48,7 +49,9 @@ public class StudentController {
         String major = majorField.getText();
         String id = idField.getText();
 
+        //check if the fields are empty
         if(id.isEmpty()||name.isEmpty()||surname.isEmpty()||major.isEmpty()){
+            //if not all the fields are input
             message.setText("Please fill in all info.");
         } else {
             Student newStudent = new Student(name,surname,id, major);
@@ -74,10 +77,12 @@ public class StudentController {
 
     @FXML
     public void initialize() {
+        // Initialize the table
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
-    // Initialize the table
+        //link the student table with the student data list
+        studentTable.setItems(studentData);
     }
 }
