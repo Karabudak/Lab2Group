@@ -71,12 +71,19 @@ public class StudentController {
 
     @FXML
     private void deleteStudent(ActionEvent event) {
+        Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
+        if(selectedStudent == null){
+            message.setText("Please select an item to delete.");
+        }else {
+            studentData.remove(selectedStudent);
+        }
 
     // Delete the selected Student from the table
     }
 
     @FXML
     public void initialize() {
+
         // Initialize the table
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -84,5 +91,6 @@ public class StudentController {
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
         //link the student table with the student data list
         studentTable.setItems(studentData);
+
     }
 }
