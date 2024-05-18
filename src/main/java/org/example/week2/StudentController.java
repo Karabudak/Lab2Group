@@ -1,6 +1,5 @@
 package org.example.week2;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,6 +70,7 @@ public class StudentController {
 
     @FXML
     private void deleteStudent(ActionEvent event) {
+
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if(selectedStudent == null){
             message.setText("Please select an item to delete.");
@@ -78,9 +78,10 @@ public class StudentController {
             studentData.remove(selectedStudent);
         }
 
-    // Delete the selected Student from the table
-    }
+        // Delete the selected Student from the table
+        studentTable.getItems().remove(studentTable.getSelectionModel().getSelectedItem());
 
+    }
     @FXML
     public void initialize() {
 
@@ -91,6 +92,8 @@ public class StudentController {
         majorColumn.setCellValueFactory(new PropertyValueFactory<>("major"));
         //link the student table with the student data list
         studentTable.setItems(studentData);
+
+        studentTable.setPlaceholder(new Label("No rows to display"));
 
     }
 }
