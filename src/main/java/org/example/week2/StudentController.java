@@ -75,16 +75,12 @@ public class StudentController {
         if(selectedStudent == null){
             message.setText("Please select an item to delete.");
         }else {
+            // Delete the selected Student from the table
             studentData.remove(selectedStudent);
         }
-
-        // Delete the selected Student from the table
-        studentTable.getItems().remove(studentTable.getSelectionModel().getSelectedItem());
-
     }
     @FXML
     public void initialize() {
-
         // Initialize the table
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
